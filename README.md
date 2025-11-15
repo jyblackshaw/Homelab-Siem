@@ -38,8 +38,6 @@ The network is comprised of 9 virtual machines (VMs) deployed in VMware, each se
 - DC-Server: DHCP functionality for LAN machines not yet configured.
 - DB-Server: Currently experiencing issues with DVWA connecting to the MySQL database on the DB-Server. DVWA is temporarily using its internal MySQL instance, but the goal is to resolve the connection issues and transition to the external database as intended.
 
-<br>
-
 ## 🧱 Firewall Rules (pfSense)
 
 The security architecture is enforced by the single **pfSense** firewall, managing all traffic between the segmented subnets with a default **DENY ALL** policy. Rules are organized by security flow, detailing the exact protocol and port numbers derived from the active configuration.

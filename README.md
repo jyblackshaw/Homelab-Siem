@@ -10,7 +10,7 @@ During design I used Ciso Packet Tracer to plan the network architecture. I even
 <img width="1137" height="816" alt="Screenshot 2025-11-14 164149" src="https://github.com/user-attachments/assets/5ef6e0ac-3874-4406-b39f-99b99870d52d" />
 
 There are 4 main subnets:
-1. **ATTACK_NET**:
+1. **ATTACK_NET**:<br>
 This subnet contains machines used for conducting attacks against systems on the internal subnets, specifically the Kali Linux machine. In a real-world environment, this traffic would normally originate from the external network (WAN), but a dedicated attack subnet is used here for control and isolation. The subnet IP range is 10.10.10.0/24.
 2. **DMZ_NET**:
 This subnet contains systems that are part of the Demilitarized Zone (DMZ), primarily the external firewall. The subnet IP range is 172.16.0.0/24.

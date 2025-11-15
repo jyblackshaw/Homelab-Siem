@@ -4,7 +4,7 @@ In this project, I designed, built, and deployed a mock virtual company network 
 ## Design
 
 This project was designed from the ground up with core security principles in mind, including the CIA Triad, Zero Trust, and network segmentation.
-During the planning phase, I used Cisco Packet Tracer to prototype the network architecture. After several iterations, I finalized the design shown in the diagram below (with further refinements made during actual implementation)
+During the planning phase, I used Cisco Packet Tracer to prototype the network architecture. After several iterations, I finalized the design shown in the diagram below (with further refinements made during actual implementation).
 
 <img width="1137" height="816" alt="Screenshot 2025-11-14 164149" src="https://github.com/user-attachments/assets/5ef6e0ac-3874-4406-b39f-99b99870d52d" />
 

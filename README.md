@@ -34,9 +34,11 @@ The network is comprised of 9 virtual machines (VMs) deployed in VMware, each se
 | **Splunk-Server** | SIEM server responsible for collecting, indexing, and correlating security logs from all network segments, enabling SOC monitoring and threat detection. | Ubuntu Server LTS | **SOC_NET:** Static — 192.168.2.100 | SOC_NET |
 | **SOC-ADMIN** | Secure management workstation used for SOC operations, including Splunk access and fire rule editing. | Windows 10/11 Pro | **SOC_NET:** Static — 192.168.2.50 | SOC_NET |
 
-**Works In Progress:**
+**Work In Progress:**
 - DC-Server: DHCP functionality for LAN machines not yet configured.
 - DB-Server: Currently experiencing issues with DVWA connecting to the MySQL database on the DB-Server. DVWA is temporarily using its internal MySQL instance, but the goal is to resolve the connection issues and transition to the external database as intended.
+
+<br>
 
 ## 🧱 Firewall Rules (pfSense)
 
@@ -45,10 +47,9 @@ The security architecture is enforced by the single **pfSense** firewall, managi
 | Rule | Source Zone (Machine) | Destination Zone (Machine/Service) | Protocol | Port(s) | Purpose | Policy |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **I. External/Attack to DMZ** | **WAN** (Internet) | DMZ\_NET Address (Web-Server) | TCP | 80, 443 | Allow external access to the public Web-Server (HTTP/S). | **ALLOW** |
-| | **ATTACK\_NET** (Kali-Attacker) | 172.16.0.100 (Web-Server) | TCP | 80 (HTTP) | Allow Kali VM to reach the Web-Server for controlled testing/emulation. | **ALLOW** |
-| | **ATTACK\_NET** (All) | ALL (Testing only) | IPv4 All | Any | Temporary rule used during initial lab build/testing. | **ALLOW** |
+| | **ATTACK\_NET** (Kali-Attacker) | 172.16.0.100 (Web-Server) | TCP | 80 (HTTP) | Allow Kali VM to reach the Web-Server. | **ALLOW** |
 | **II. DMZ to LAN** | **DMZ\_NET** (Web-Server) | 192.168.1.50 (DB-Server) | TCP | 3306 | Allow the Web-Server to connect to the internal Database (MySQL). | **ALLOW** |
-| **III. DMZ to SOC** | **DMZ\_NET** (Web-Server) | 192.168.2.100 (Splunk-Server) | TCP | 9997 | **CRITICAL:** Allow Web-Server to forward logs to the Splunk Universal Forwarder listener. | **ALLOW** |
+| **III. DMZ to SOC** | **DMZ\_NET** (Web-Server) | 192.168.2.100 (Splunk-Server) | TCP | 9997 | Allow Web-Server to forward logs to the Splunk Universal Forwarder listener. | **ALLOW** |
 | **IV. DMZ Outbound** | **DMZ\_NET** (Subnets) | WAN (Internet) | TCP/UDP | 80, 443 | Allow DMZ servers to access the web for system updates. | **ALLOW** |
 | | **DMZ\_NET** (Subnets) | WAN (Internet) | UDP | 53 (DNS) | Allow DMZ servers to perform domain name lookups. | **ALLOW** |
 | | **DMZ\_NET** (Subnets) | WAN (Internet) | IPv4 ICMP | Any | Allow DMZ servers to send Ping requests for basic network testing. | **ALLOW** |
@@ -60,3 +61,6 @@ The security architecture is enforced by the single **pfSense** firewall, managi
 ### **Default Policy**
 
 **The implicit firewall rule is DENY ALL traffic that is not explicitly permitted by the rules above.** This is the foundation of the network's zero-trust approach.
+
+**Work In Progress:**
+- This project is still a work in progress and some of these rules are subject to change. I will update the README when appropriate.

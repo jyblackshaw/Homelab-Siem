@@ -56,9 +56,8 @@ The security architecture is enforced by the single **pfSense** firewall, managi
 | **VI. SOC Internal Rule** | **SOC\_NET** (Subnets) | WAN (Internet) | IPv4 All | Any | Allow SOC team full access to the Internet for threat intelligence and updates. | **ALLOW** |
 | | **SOC\_NET** (SOC-ADMIN) | This Firewall (self) | TCP/UDP | 80, 443 | Allow the SOC-ADMIN machine to access the pfSense Web GUI for management. | **ALLOW** |
 
-### **Default Policy**
-
+### **Default Policy** <br>
 **The implicit firewall rule is DENY ALL traffic that is not explicitly permitted by the rules above.** This is the foundation of the network's zero-trust approach.
 
-**Work In Progress:**
-- This project is still a work in progress and some of these rules are subject to change. I will update the README when appropriate.
+**Work In Progress:** <br>
+This project is still a work in progress and some of these rules are subject to change. I will update the README when appropriate.

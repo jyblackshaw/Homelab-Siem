@@ -61,8 +61,8 @@ The security architecture is enforced by the single **pfSense** firewall, managi
 **Work In Progress:** <br>
 This project is still a work in progress and some of these rules are subject to change. I will update the README when appropriate.
 
-
---DOCUMENTATION TO DO--
+<br>
+--DOCUMENTATION TO DO-- <br>
 Attacks Performed <br>
 Splunk Logging & Filter <br>
 

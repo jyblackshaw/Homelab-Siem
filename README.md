@@ -1,4 +1,4 @@
-# Homelab-Siem
+# Homelab-SIEM
 
 In this project, I designed, built, and deployed a mock virtual company network to practice cybersecurity concepts, including offensive (Red Team) techniques and defensive monitoring. This environment is still a work in progress—additional documentation, diagrams, and demonstration videos will be added in future updates.
 ## Design

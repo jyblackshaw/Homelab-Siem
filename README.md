@@ -1,4 +1,4 @@
-# Homelab-Siem-JYB
+# Homelab-Siem
 
 In this project I designed, built up, and deployed a mock virtual company network, to test cyber security skills and to practice offensive red teaming skills. Note this is still a work in progress and so there is still missing documentation & demos I will add to this repo in the future.  
 

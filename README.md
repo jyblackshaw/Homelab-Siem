@@ -20,3 +20,16 @@ This subnet serves as the security operations network and includes systems such 
 This subnet is the main corporate network. It contains machines such as employee laptops, the database server, and the domain controller. The subnet IP range is **192.168.1.0/24**.
 
 ## Machines:
+
+The network is comprised of 9 virtual machines (VMs) deployed in VMware, each serving a specific role within the simulated enterprise and security environment.
+
+| VM Name | Role / Function | OS | IP Configuration | Network Adapter(s) |
+| :--- | :--- | :--- | :--- | :--- |
+| **pfSense** | **Central Security Gateway (Firewall)** Acts as the single point of defense, enforcing routing, **access control (firewall rules)**, and network segmentation between all subnets (WAN, ATTACK, DMZ, SOC, LAN). | pfSense CE | **ATTACK\_NET**: 10.10.10.1<br>**DMZ\_NET**: 172.16.0.1<br>**LAN\_NET**: 192.168.1.1<br>**SOC\_NET**: 192.168.2.1 | 4 (one for each internal subnet) |
+| **Kali-Attacker** | **External Threat Emulation** Used for **Offensive (Red Team) exercises** to launch controlled attacks (e.g., port scanning, brute-force, web app attacks) against the targets in the DMZ and LAN. | Kali Linux | **ATTACK\_NET**: Static: 10.10.10.10 | ATTACK\_NET |
+| **Web-Server** | **Vulnerable Web Host (DMZ)** Public-facing server hosting the **Damn Vulnerable Web Application (DVWA)**. It is the primary target for web application attacks and is designed to generate rich logs. | Ubuntu Server LTS | **DMZ\_NET**: Static: 172.16.0.100 | DMZ\_NET |
+| **DC-Server** | **Domain Controller (LAN)** Manages central authentication, DNS, and DHCP services for the internal corporate `LAN_NET`. Represents a critical internal asset. | Windows Server | **LAN\_NET**: Static: 192.168.1.10 | LAN\_NET |
+| **DB-Server** | **Internal Database Host** Stores sensitive application data (MySQL). It is secured within the `LAN_NET` and configured to be accessible only by the Web-Server. | Ubuntu Server LTS | **LAN\_NET**: Static: 192.168.1.50 | LAN\_NET |
+| **Win10-Client** | **Employee Workstation (LAN)** Simulates a standard end-user machine in the internal corporate network, typically using DHCP from the DC-Server. | Windows 10/11 Pro | **LAN\_NET**: Dynamic | LAN\_NET |
+| **Splunk-Server** | **SIEM Platform (SOC)** The core defensive asset. It centrally collects, indexes, and correlates all security logs from the firewall and servers to enable real-time threat detection. | Ubuntu Server LTS | **SOC\_NET**: Static: 192.168.2.100 | SOC\_NET |
+| **SOC-ADMIN** | **Secure Management Workstation** A hardened Windows machine used exclusively for security management tasks, accessing the Splunk interface, and investigating incidents. | Windows 10/11 Pro | **SOC\_NET**: Static: 192.168.2.50 | SOC\_NET |

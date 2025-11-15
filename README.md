@@ -10,9 +10,13 @@ During design I used Ciso Packet Tracer to plan the network architecture. I even
 <img width="1137" height="816" alt="Screenshot 2025-11-14 164149" src="https://github.com/user-attachments/assets/5ef6e0ac-3874-4406-b39f-99b99870d52d" />
 
 There are 4 main subnets:
-1. ATTACK_NET: This subnet contains machines used for attacking other machines on the internal subnets, specifically the Kali-Linux machine. In a real scenario this network would just be all external traffic (WAN), but we use a designated attack subnet for control purposes. The subnet IP range is 10.10.10.x/24.
-2. DMZ_NET: This subnet contains machines that are apart of the Demilitarized Zone, namely the external firewall. The subnet IP range is 172.16.0.x/24.
-3. SOC_NET: This subnet is the security network, and involves the SOC and SOC-admin machines. The subnet IP range is 192.168.2.x/24.
-4. LAN_NET: This subnet is the main coporate network. It contain machines like employee laptops, the database server, and domain controller. The subnet IP range is 192.168.1.x/24.
+1. **ATTACK_NET**:
+This subnet contains machines used for conducting attacks against systems on the internal subnets, specifically the Kali Linux machine. In a real-world environment, this traffic would normally originate from the external network (WAN), but a dedicated attack subnet is used here for control and isolation. The subnet IP range is 10.10.10.0/24.
+2. **DMZ_NET**:
+This subnet contains systems that are part of the Demilitarized Zone (DMZ), primarily the external firewall. The subnet IP range is 172.16.0.0/24.
+3. **SOC_NET**:
+This subnet serves as the security operations network and includes systems such as the SOC workstation and the SOC admin machine. The subnet IP range is 192.168.2.0/24.
+4. **LAN_NET**:
+This subnet is the main corporate network. It contains machines such as employee laptops, the database server, and the domain controller. The subnet IP range is 192.168.1.0/24.
 
 ## Machines:

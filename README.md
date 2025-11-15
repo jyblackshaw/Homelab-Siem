@@ -52,7 +52,7 @@ The security architecture is enforced by the single **pfSense** firewall, managi
 | | **DMZ\_NET** (Subnets) | WAN (Internet) | UDP | 53 (DNS) | Allow DMZ servers to perform domain name lookups. | **ALLOW** |
 | | **DMZ\_NET** (Subnets) | WAN (Internet) | IPv4 ICMP | Any | Allow DMZ servers to send Ping requests for basic network testing. | **ALLOW** |
 | **V. LAN Internal Rule** | **LAN\_NET** (Subnets) | WAN (Internet) & DMZ\_NET | IPv4 All | Any | Allow general corporate user access to the Internet and the DMZ Web-Server. | **ALLOW** |
-| | **LAN\_NET** (Subnets) | SOC\_NET (Subnets) | IPv4 All | Any | **SECURITY PRINCIPLE:** Block corporate user network access to the sensitive SOC network. | **BLOCK** |
+| | **LAN\_NET** (Subnets) | SOC\_NET (Subnets) | IPv4 All | Any | **SECURITY PRINCIPLE:** Block corporate user network access to the SOC network. | **BLOCK** |
 | **VI. SOC Internal Rule** | **SOC\_NET** (Subnets) | WAN (Internet) | IPv4 All | Any | Allow SOC team full access to the Internet for threat intelligence and updates. | **ALLOW** |
 | | **SOC\_NET** (SOC-ADMIN) | This Firewall (self) | TCP/UDP | 80, 443 | Allow the SOC-ADMIN machine to access the pfSense Web GUI for management. | **ALLOW** |
 

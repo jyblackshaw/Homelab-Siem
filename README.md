@@ -63,6 +63,8 @@ This project is still a work in progress and some of these rules are subject to 
 
 <br>
 --DOCUMENTATION TO DO-- <br>
+Firewall Settings <br>
+Logs & Forwarders <br>
 Attacks Performed <br>
 Splunk Logging & Filter <br>
 Security Protocols & Strategies.<br>

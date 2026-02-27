@@ -58,6 +58,19 @@ The security architecture is enforced by the single **pfSense** firewall, managi
 ### **Default Policy** <br>
 **The implicit firewall rule is DENY ALL traffic that is not explicitly permitted by the rules above.** This is the foundation of the network's zero-trust approach.
 
+### **Default Policy** <br>
+**Database Creation**:
+1. Mariadb installation:
+2. Database and User Creation:
+CREATE DATABASE dvwa;
+CREATE USER 'dvwa'@'172.16.0.200' IDENTIFIED BY 'exmaple-password';
+GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'172.16.0.200';
+FLUSH PRIVILEGES;
+
+These commands create a new database for the DVWA, and a user with access to all tables in the db, which can only be accessed from the DVWA webserver.
+
+4.
+
 **Work In Progress:** <br>
 This project is still a work in progress and some of these rules are subject to change. I will update the README when appropriate.
 

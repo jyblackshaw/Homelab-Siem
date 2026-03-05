@@ -1,6 +1,6 @@
 # Homelab-SIEM
 
-A segmented virtual enterprise network built from the ground up for practicing offensive and defensive cybersecurity. The environment simulates a real corporate network with isolated subnets, a centralized firewall, Active Directory, a vulnerable web application, and a SIEM — designed to demonstrate the full lifecycle of an attack from initial exploitation to detection and response.
+A segmented virtual enterprise network built from the ground up for practicing offensive and defensive cybersecurity. The environment simulates a real corporate network with isolated subnets, a centralized firewall, Active Directory, a vulnerable web application, and a SIEM - designed to demonstrate the full lifecycle of an attack from initial exploitation to detection and response.
 
 ## Network Architecture
 
@@ -15,8 +15,8 @@ The network is built on VMware Workstation and segmented into four subnets, all 
 |---|---|---|
 | ATTACK_NET | 10.10.10.0/24 | Simulated external attacker network (Kali Linux) |
 | DMZ_NET | 172.16.0.0/24 | Demilitarized zone hosting the public-facing DVWA webserver |
-| LAN_NET | 192.168.10.0/24 | Corporate network — Domain Controller, database server, workstations |
-| SOC_NET | 192.168.20.0/24 | Security operations — Splunk SIEM server and SOC analyst workstation |
+| LAN_NET | 192.168.10.0/24 | Corporate network - Domain Controller, database server, workstations |
+| SOC_NET | 192.168.20.0/24 | Security operations - Splunk SIEM server and SOC analyst workstation |
 
 ### Machines
 
@@ -28,7 +28,7 @@ The network is built on VMware Workstation and segmented into four subnets, all 
 | DB-Server | Ubuntu Server | 192.168.10.50 | LAN_NET | MariaDB backend for DVWA |
 | DC-Server | Windows Server | 192.168.10.10 | LAN_NET | Active Directory Domain Controller |
 | Win10-Client | Windows 10/11 | DHCP | LAN_NET | Corporate workstation |
-| Splunk-Server | Ubuntu Server | 192.168.20.100 | SOC_NET | Splunk SIEM — log aggregation and alerting |
+| Splunk-Server | Ubuntu Server | 192.168.20.100 | SOC_NET | Splunk SIEM - log aggregation and alerting |
 | SOC-Admin | Windows 10/11 | 192.168.20.50 | SOC_NET | SOC analyst workstation and bastion host |
 
 ## Key Security Principles
@@ -76,4 +76,4 @@ This project is actively being built out. Current priorities:
 
 ---
 
-*Built by Julian — CS graduate (UC Irvine, Dec 2025) | CompTIA Security+ | Pursuing CCNA*
+*Built by Julian - CS graduate (UC Irvine, Dec 2025) | CompTIA Security+ | Pursuing CCNA*

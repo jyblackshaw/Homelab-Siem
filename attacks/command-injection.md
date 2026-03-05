@@ -1,20 +1,20 @@
-# DVWA Command Injection — Attack Chain Writeup
+# DVWA Command Injection - Attack Chain Writeup
 
 ## Introduction
 
-This writeup walks through a full attack chain performed in a segmented homelab environment. Starting from a single unvalidated input field in DVWA's Command Injection module, the attack escalated from running commands on the webserver to compromising the backend database — stealing credentials, cracking passwords, and resetting accounts. The writeup also shows how firewall rules and network segmentation limited how far the attacker could move.
+This writeup walks through a full attack chain performed in a segmented homelab environment. Starting from a single unvalidated input field in DVWA's Command Injection module, the attack escalated from running commands on the webserver to compromising the backend database - stealing credentials, cracking passwords, and resetting accounts. The writeup also shows how firewall rules and network segmentation limited how far the attacker could move.
 
 ### Environment
 
-- **Attacker:** Kali Linux (10.10.10.10) — ATTACK_NET
-- **Target Webserver:** Ubuntu running DVWA (172.16.0.200) — DMZ_NET
-- **Database Server:** Ubuntu running MariaDB (192.168.10.50) — CORP_NET
+- **Attacker:** Kali Linux (10.10.10.10) - ATTACK_NET
+- **Target Webserver:** Ubuntu running DVWA (172.16.0.200) - DMZ_NET
+- **Database Server:** Ubuntu running MariaDB (192.168.10.50) - CORP_NET
 - **Firewall:** pfSense managing segmentation between all subnets
 - **DVWA Security Level:** Low (no input filtering)
 
 ---
 
-## Step 1 — Testing for Command Injection
+## Step 1 - Testing for Command Injection
 
 The DVWA Command Injection module takes an IP address and passes it to the system `ping` command. On Low security, user input is not filtered at all, so extra commands can be appended to the input.
 
@@ -24,11 +24,11 @@ To test this, the following was entered into the input field:
 127.0.0.1; whoami
 ```
 
-The page returned the normal ping output, followed by `www-data` — the user account Apache runs under. This confirms the server is executing whatever commands are injected after the semicolon.
+The page returned the normal ping output, followed by `www-data` - the user account Apache runs under. This confirms the server is executing whatever commands are injected after the semicolon.
 
 ![whoami command injection](../screenshots/command-injection/01_whoami.png)
 
-## Step 2 — Establishing a Reverse Shell
+## Step 2 - Establishing a Reverse Shell
 
 With command execution confirmed, the next step was to get an interactive shell on the webserver. A netcat listener was started on the Kali machine:
 
@@ -46,7 +46,7 @@ This runs the normal ping, then pipes into a bash reverse shell that connects ba
 
 ![Reverse shell setup and connection](../screenshots/command-injection/02_reverse_shell.png)
 
-## Step 3 — Finding Database Credentials
+## Step 3 - Finding Database Credentials
 
 From the reverse shell, the DVWA config file was read:
 
@@ -54,11 +54,11 @@ From the reverse shell, the DVWA config file was read:
 cat /var/www/html/DVWA/config/config.inc.php
 ```
 
-This exposed the database credentials in plaintext — the server address (192.168.10.50), database name, username, and password. Web apps need these credentials to connect to their database, and they're almost always stored as plaintext in config files. Any attacker with a shell on a webserver will check for these first.
+This exposed the database credentials in plaintext - the server address (192.168.10.50), database name, username, and password. Web apps need these credentials to connect to their database, and they're almost always stored as plaintext in config files. Any attacker with a shell on a webserver will check for these first.
 
 ![Config file with plaintext credentials](../screenshots/command-injection/03_config_creds.png)
 
-## Step 4 — Accessing the Database
+## Step 4 - Accessing the Database
 
 Using the credentials from the config file, the database was queried directly from the reverse shell:
 
@@ -70,7 +70,7 @@ This returned all user accounts and their MD5 password hashes. In a real attack,
 
 ![Database query showing user hashes](../screenshots/command-injection/04_hash_dump.png)
 
-## Step 5 — Resetting Credentials
+## Step 5 - Resetting Credentials
 
 With write access to the database, the admin password was overwritten directly:
 
@@ -82,7 +82,7 @@ A follow-up query confirmed the admin password was replaced with plaintext. An a
 
 ![Password reset and verification](../screenshots/command-injection/05_credential_reset.png)
 
-## Step 6 — Cracking Passwords with John the Ripper
+## Step 6 - Cracking Passwords with John the Ripper
 
 The remaining password hashes were copied to the Kali machine and cracked using John the Ripper with the rockyou.txt wordlist:
 
@@ -94,7 +94,7 @@ All hashes cracked in seconds because the passwords were weak and MD5 has no sal
 
 ![John the Ripper cracking results](../screenshots/command-injection/06_john_cracked.png)
 
-## Step 7 — Defense Validation
+## Step 7 - Defense Validation
 
 The pfSense firewall rules for DMZ_NET show that the webserver's outbound access is tightly scoped. It can only reach the database server on port 3306, Splunk on port 9997, and standard web/DNS ports for updates. A temporary rule on port 4444 was added to allow the reverse shell for this exercise (labeled "Intentional Vulnerability").
 

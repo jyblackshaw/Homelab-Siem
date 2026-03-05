@@ -15,8 +15,8 @@ The network is built on VMware Workstation and segmented into four subnets, all 
 |---|---|---|
 | ATTACK_NET | 10.10.10.0/24 | Simulated external attacker network (Kali Linux) |
 | DMZ_NET | 172.16.0.0/24 | Demilitarized zone hosting the public-facing DVWA webserver |
-| LAN_NET | 192.168.10.0/24 | Corporate network — Domain Controller, database server, workstations |
-| SOC_NET | 192.168.20.0/24 | Security operations — Splunk SIEM server and SOC analyst workstation |
+| LAN_NET | 192.168.10.0/24 | Corporate network - Domain Controller, database server, workstations |
+| SOC_NET | 192.168.20.0/24 | Security operations - Splunk SIEM server and SOC analyst workstation |
 
 ### Machines
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This writeup walks through a full attack chain performed in a segmented homelab environment. Starting from a single unvalidated input field in DVWA's Command Injection module, the attack escalated from running commands on the webserver to compromising the backend database - stealing credentials, cracking passwords, and resetting accounts. The writeup also shows how firewall rules and network segmentation limited how far the attacker could move.
+This writeup walks through a full attack chain performed on the segmented homelab environment. Starting from a single unvalidated input field in DVWA's Command Injection module, the attack escalated from running commands on the webserver to compromising the backend database - stealing credentials, cracking passwords, and resetting accounts. The writeup also shows how firewall rules and network segmentation limited how far the attacker could move.
 
 ### Environment
 

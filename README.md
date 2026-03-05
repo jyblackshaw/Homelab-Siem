@@ -76,4 +76,4 @@ This project is actively being built out. Current priorities:
 
 ---
 
-*Built by Julian - CS graduate (UC Irvine, Dec 2025) | CompTIA Security+ | Pursuing CCNA*
+*Built by Julian - CS graduate*

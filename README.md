@@ -76,4 +76,4 @@ This project is actively being built out. Current priorities:
 
 ---
 
-*Built by Julian - CS graduate*
+*Built by Julian Yeshen Blackshaw*

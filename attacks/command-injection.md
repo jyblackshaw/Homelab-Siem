@@ -26,7 +26,7 @@ To test this, the following was entered into the input field:
 
 The page returned the normal ping output, followed by `www-data` - the user account Apache runs under. This confirms the server is executing whatever commands are injected after the semicolon.
 
-![whoami command injection](../screenshots/command-injection/01_whoami.png)
+![whoami command injection](../links/screenshots/command-injection/whoami.png)
 
 ## Step 2 - Establishing a Reverse Shell
 
@@ -44,7 +44,7 @@ Then the following payload was entered into the DVWA input field:
 
 This runs the normal ping, then pipes into a bash reverse shell that connects back to the attacker on port 4444. The Kali listener caught the connection, giving a remote shell on the webserver as `www-data`.
 
-![Reverse shell setup and connection](../screenshots/command-injection/02_reverse_shell.png)
+![Reverse shell setup and connection](../links/screenshots/command-injection/reversepowershell.png)
 
 ## Step 3 - Finding Database Credentials
 
@@ -56,7 +56,7 @@ cat /var/www/html/DVWA/config/config.inc.php
 
 This exposed the database credentials in plaintext - the server address (192.168.10.50), database name, username, and password. Web apps need these credentials to connect to their database, and they're almost always stored as plaintext in config files. Any attacker with a shell on a webserver will check for these first.
 
-![Config file with plaintext credentials](../screenshots/command-injection/03_config_creds.png)
+![Config file with plaintext credentials](../links/screenshots/command-injection/plaintextcredentials.png)
 
 ## Step 4 - Accessing the Database
 
@@ -68,7 +68,7 @@ mysql -h 192.168.10.50 -u dvwa -p'ezpass' -e "SELECT user, password FROM dvwa_co
 
 This returned all user accounts and their MD5 password hashes. In a real attack, this could expose customer data, financial records, or anything else stored in the database.
 
-![Database query showing user hashes](../screenshots/command-injection/04_hash_dump.png)
+![Database query showing user hashes](../links/screenshots/command-injection/dbqueryuserhashes.png)
 
 ## Step 5 - Resetting Credentials
 
@@ -80,7 +80,7 @@ UPDATE dvwa_copy.users SET password='hacked' WHERE user='admin';
 
 A follow-up query confirmed the admin password was replaced with plaintext. An attacker could do this to lock out real administrators while keeping their own access.
 
-![Password reset and verification](../screenshots/command-injection/05_credential_reset.png)
+![Password reset and verification](../links/screenshots/command-injection/reset-admin-pw.png)
 
 ## Step 6 - Cracking Passwords with John the Ripper
 
@@ -92,7 +92,7 @@ john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt
 
 All hashes cracked in seconds because the passwords were weak and MD5 has no salting or built-in slowdown. Results: gordonb:abc123, 1337:charley, pablo:letmein.
 
-![John the Ripper cracking results](../screenshots/command-injection/06_john_cracked.png)
+![John the Ripper cracking results](../links/screenshots/command-injection/john-cracked-cropped.png)
 
 ## Step 7 - Defense Validation
 
@@ -100,7 +100,7 @@ The pfSense firewall rules for DMZ_NET show that the webserver's outbound access
 
 Without that intentional rule, the reverse shell would have been blocked. The segmentation also prevented the compromised webserver from reaching the Domain Controller, SOC workstations, or any other internal systems beyond its explicitly allowed destinations.
 
-![pfSense DMZ firewall rules](../screenshots/command-injection/07_firewall_rules.png)
+![pfSense DMZ firewall rules](../links/screenshots/command-injection/pfsensefw-rule-cropped.png)
 
 ---
 

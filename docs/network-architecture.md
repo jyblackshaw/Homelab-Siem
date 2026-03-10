@@ -31,5 +31,14 @@ The network is built on VMware Workstation and segmented into four subnets, all 
 - **Separated Web and Database Tiers:** DVWA runs on a webserver in the DMZ while its MariaDB database sits on a separate server in the LAN, connected only on port 3306.
 - **Centralized Logging:** Endpoints forward logs to the Splunk SIEM on SOC_NET for monitoring, correlation, and alerting.
 - **SSH Hardening:** Key-based authentication via ed25519, managed from the SOC-Admin bastion host.
+- **Centralized DNS Resolution:** All hosts are manually configured to use the pfSense gateway on their subnet as their DNS server rather than an external resolver. pfSense forwards queries to the internet on behalf of each host. This allows DNS firewall rules to be scoped to the gateway IP only, blocking any direct DNS traffic to external servers. It also gives pfSense full visibility into every DNS query across the network, which can be logged and forwarded to Splunk for monitoring.
+
+| Subnet | DNS Server |
+|---|---|
+| DMZ_NET | 172.16.0.1 |
+| CORP_NET | 192.168.10.1 |
+| SOC_NET | 192.168.20.1 |
+
+On Linux hosts this is set in `/etc/resolv.conf`. On Windows hosts it is configured in the network adapter's IPv4 DNS settings.
 
 *Additional network topology and layout diagrams will be added to this document as the environment evolves.*

@@ -17,7 +17,7 @@ Below are the various sections of this project. Each covers a different aspect o
 
 ## Documentation
 
-| Document | Description |
+| Architecture | Description |
 |---|---|
 | [Network Architecture](docs/network-architecture.md) | Subnet layout, machine inventory, and key security principles |
 | [Firewall Rules](docs/firewall-rules.md) | pfSense rule sets for each subnet with rationale |

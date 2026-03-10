@@ -5,7 +5,7 @@ A segmented virtual enterprise network built from the ground up for practicing o
 ## Network Architecture
 
 <!-- Network diagram -->
-<img width="1137" height="816" alt="Network Diagram" src="https://github.com/user-attachments/assets/5ef6e0ac-3874-4406-b39f-99b99870d52d" />
+<img width="1137" height="816" alt="Network Diagram" src="links/screenshots/network-topo.png" />
 
 ## Project Sections
 

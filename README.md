@@ -15,9 +15,9 @@ Below are the various sections of this project. Each covers a different aspect o
 - **[Attacks](attacks/)** - Offensive exercises performed against the environment, with step-by-step writeups showing exploitation techniques and attack chains
 - **[Defenses](defenses/)** - Detection, monitoring, and containment strategies used to identify and respond to the attacks
 
-## Documentation
+## Architecture
 
-| Architecture | Description |
+| Document | Description |
 |---|---|
 | [Network Architecture](docs/network-architecture.md) | Subnet layout, machine inventory, and key security principles |
 | [Firewall Rules](docs/firewall-rules.md) | pfSense rule sets for each subnet with rationale |

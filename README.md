@@ -46,10 +46,16 @@ Below are the various sections of this project. Each covers a different aspect o
 ## Status
 
 This project is actively being built out. Current priorities:
+- Port Forwarding Documentation.
 - Completing DVWA attack modules and writeups
-- Active Directory GPO configuration and domain-joining Linux hosts
-- Splunk forwarder deployment and dashboard creation
-- Tightening SOC_NET firewall rules
+- Active Directory GPO configuration
+- Splunk dashboards & alerts
+- Proxy Server containing IPS/IDS.
+- EDR / AV
+- Vulnerability Scanning
+- In depth packet/log analysis.
+- Putting DB & DC on seperate subnets.
+- Policy Implementations (GRC).
 
 ---
 

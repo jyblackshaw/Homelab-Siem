@@ -8,3 +8,4 @@ Documentation of Splunk SPL queries, correlation searches, and alert dashboards 
 - Alert dashboard configuration and thresholds
 - Example alerts triggered by attack exercises
 - Windows Alert Analysis
+- Wireshark Packet Analysis

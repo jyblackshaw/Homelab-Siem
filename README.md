@@ -55,6 +55,7 @@ This project is actively being built out. Current priorities:
 - Vulnerability Scanning
 - In depth packet/log analysis.
 - Putting DB & DC on seperate subnets.
+- Windows Event Logs Analysis.
 - Policy Implementations (GRC).
 
 ---

@@ -31,9 +31,9 @@ Below are the various sections of this project. Each covers a different aspect o
 | Writeup | Description |
 |---|---|
 | [Command Injection → DB Compromise](attacks/command-injection.md) | Full attack chain from DVWA input field to database credential theft and password cracking |
-| [SQL Injection](attacks/sql-injection.md) | *Planned* |
 | [Brute Force](attacks/brute-force.md) | *Planned* |
 | [XSS (Reflected & Stored)](attacks/xss.md) | *Planned* |
+| [Privilege Escalation]() | *Planned* |
 
 ## Defense Documentation
 

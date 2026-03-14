@@ -7,3 +7,4 @@ Documentation of Splunk SPL queries, correlation searches, and alert dashboards 
 - Correlation searches linking events across endpoints
 - Alert dashboard configuration and thresholds
 - Example alerts triggered by attack exercises
+- Windows Alert Analysis

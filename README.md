@@ -40,7 +40,7 @@ Below are the various sections of this project. Each covers a different aspect o
 | Document | Description |
 |---|---|
 | [Network Segmentation](defenses/network-segmentation.md) | How subnet isolation and firewall rules contain lateral movement |
-| [IDS Monitoring](defenses/ids-monitoring.md) | Intrusion detection configuration and alert tuning |
+| [IDS Monitoring](defenses/ids-monitoring.md) | Intrusion detection configuration and alert tuning (Planned)|
 | [Log Analysis & Alerting](defenses/log-analysis.md) | SPL queries, correlation searches, and Splunk alert dashboards |
 
 ## Status

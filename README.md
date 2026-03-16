@@ -31,29 +31,35 @@ Below are the various sections of this project. Each covers a different aspect o
 | Writeup | Description |
 |---|---|
 | [Command Injection → DB Compromise](attacks/command-injection.md) | Full attack chain from DVWA input field to database credential theft and password cracking |
-| [SQL Injection](attacks/sql-injection.md) | *Planned* |
 | [Brute Force](attacks/brute-force.md) | *Planned* |
 | [XSS (Reflected & Stored)](attacks/xss.md) | *Planned* |
+| [Privilege Escalation]() | *Planned* |
 
 ## Defense Documentation
 
 | Document | Description |
 |---|---|
 | [Network Segmentation](defenses/network-segmentation.md) | How subnet isolation and firewall rules contain lateral movement |
-| [IDS Monitoring](defenses/ids-monitoring.md) | Intrusion detection configuration and alert tuning |
 | [Log Analysis & Alerting](defenses/log-analysis.md) | SPL queries, correlation searches, and Splunk alert dashboards |
 | EDR / AV | *Planned* |
-| IPS / IDS (Proxy Server) | *Planned* |
 | Vulnerability Scanning | *Planned* |
 | SIEM Queries, Dashboards & Alerts | *Planned* |
+| [IPS / IDS (Proxy Server)](defenses/ids-monitoring.md) | *Planned* |
 
 ## Status
 
 This project is actively being built out. Current priorities:
+- Port Forwarding Documentation.
 - Completing DVWA attack modules and writeups
-- Active Directory GPO configuration and domain-joining Linux hosts
-- Splunk forwarder deployment and dashboard creation
-- Tightening SOC_NET firewall rules
+- Active Directory GPO configuration
+- Splunk dashboards & alerts
+- Proxy Server containing IPS/IDS.
+- EDR / AV
+- Vulnerability Scanning
+- In depth packet/log analysis.
+- Putting DB & DC on seperate subnets.
+- Windows Event Logs Analysis.
+- Policy Implementations (GRC).
 
 ---
 

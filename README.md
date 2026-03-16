@@ -42,6 +42,10 @@ Below are the various sections of this project. Each covers a different aspect o
 | [Network Segmentation](defenses/network-segmentation.md) | How subnet isolation and firewall rules contain lateral movement |
 | [IDS Monitoring](defenses/ids-monitoring.md) | Intrusion detection configuration and alert tuning |
 | [Log Analysis & Alerting](defenses/log-analysis.md) | SPL queries, correlation searches, and Splunk alert dashboards |
+| EDR / AV | *Planned* |
+| IPS / IDS (Proxy Server) | *Planned* |
+| Vulnerability Scanning | *Planned* |
+| SIEM Queries, Dashboards & Alerts | *Planned* |
 
 ## Status
 

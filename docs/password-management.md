@@ -6,7 +6,7 @@ All credentials across the lab environment are stored in a KeePass database on m
 
 ## Why KeePass
 
-- Offline — the database file stays local, no cloud sync
+- Offline - the database file stays local, no cloud sync
 - Encrypted with AES-256
 - Organises credentials by category (servers, services, domain accounts, etc.)
 

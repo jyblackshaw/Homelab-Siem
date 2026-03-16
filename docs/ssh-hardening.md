@@ -17,8 +17,8 @@ ssh-keygen -t ed25519
 A passphrase was set on the private key for an additional layer of protection.
 
 Keys stored at `C:\Users\Analyst\.ssh\`:
-- `id_ed25519` — private key (stays on SOC-Admin)
-- `id_ed25519.pub` — public key (copied to each server)
+- `id_ed25519` - private key (stays on SOC-Admin)
+- `id_ed25519.pub` - public key (copied to each server)
 
 ## Public Key Distribution
 
@@ -54,15 +54,15 @@ SSH access is scoped to SOC-Admin only. The following pfSense rules allow port 2
 | Source | Destination | Port | Purpose |
 |---|---|---|---|
 | 192.168.20.50 | 192.168.20.100 | 22 | SOC-Admin to Splunk-Server (SOC_NET, no cross-subnet rule needed) |
-| 192.168.20.50 | 172.16.0.200 | 22 | SOC-Admin to Web-Server (SOC_NET → DMZ_NET) |
-| 192.168.20.50 | 192.168.10.50 | 22 | SOC-Admin to DB-Server (SOC_NET → LAN_NET) |
+| 192.168.20.50 | 172.16.0.200 | 22 | SOC-Admin to Web-Server (SOC_NET -> DMZ_NET) |
+| 192.168.20.50 | 192.168.10.50 | 22 | SOC-Admin to DB-Server (SOC_NET -> LAN_NET) |
 
 No other hosts are permitted to initiate SSH connections to these servers.
 
 ## MFA (Planned)
 
-*To be configured — multi-factor authentication for SSH using TOTP or similar.*
+*To be configured - multi-factor authentication for SSH using TOTP or similar.*
 
 ## SSH Log Forwarding to Splunk
 
-*To be configured — SSH auth logs will be forwarded to Splunk for monitoring and alerting.*
+*To be configured - SSH auth logs will be forwarded to Splunk for monitoring and alerting.*

@@ -141,9 +141,25 @@ Any traffic that does not match a rule on its interface is silently dropped by p
 
 ## NAT (Port Forwarding)
 
-> **Documentation In Progress**
+To make DVWA accessible from outside the virtual environment (e.g. from the host PC or other devices on the physical LAN), NAT port forwarding was configured on pfSense to route inbound WAN traffic to the DVWA webserver in the DMZ. This simulates more realistic access to the web application, as if it were exposed to the internet rather than only reachable from within the virtual network.
 
-NAT port forwarding rules have been configured on pfSense but are not yet documented here. This section will cover inbound NAT rules, their purpose, and how they map external traffic to internal hosts.
+### Setup Steps
+
+1. **Created NAT port forwarding rules** - forwards inbound HTTP (80) and HTTPS (443) from the WAN interface to the DVWA webserver at 172.16.0.200.
+
+![NAT port forwarding rules](../links/screenshots/firewall/port-fwd.png)
+
+2. **Set WAN interface to DHCP** - under Interfaces > WAN, the IPv4 Configuration Type was set to DHCP so pfSense receives an IP from the host network.
+
+3. **Created WAN firewall rule** - allows inbound traffic on the WAN interface to reach the forwarded ports.
+
+![WAN firewall rules](../links/screenshots/firewall/wan-fw-rules.png)
+
+4. **Set VMware network adapter to Bridged** - the firewall's WAN-facing VMware adapter was changed from NAT to Bridged mode, placing it directly on the physical LAN.
+
+5. **Verified access** - DVWA was accessible from both the host PC and a separate laptop on the same physical network using the DHCP-assigned WAN IP.
+
+![DVWA accessible from host PC and laptop](../links/screenshots/firewall/laptop+pc-port-fwd-connection.jpg)
 
 ## Planned Changes
 

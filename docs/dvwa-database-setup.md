@@ -79,12 +79,12 @@ sudo mysql dvwa < /path/to/dvwa_fake_data.sql
 
 | Table | Records | Contents |
 |---|---|---|
-| `customers` | 30 | PII — names, emails, phone numbers, SSNs, addresses |
+| `customers` | 30 | PII - names, emails, phone numbers, SSNs, addresses |
 | `credit_cards` | 30 | Card numbers, CVVs, expiry dates, balances (linked to customers) |
-| `employees` | 20 | Employee records — salaries, SSNs, department hierarchy |
+| `employees` | 20 | Employee records - salaries, SSNs, department hierarchy |
 | `medical_records` | 15 | Blood types, medications, conditions, insurance info (linked to customers) |
 | `user_credentials` | 20 | Usernames, MD5 hashes, plain-text passwords, security Q&A (linked to customers) |
 | `transactions` | 40 | Purchase history with merchants, amounts, statuses (linked to customers/cards) |
-| `admin_notes` | 8 | Internal notes — fake credentials, incident reports, compliance findings |
+| `admin_notes` | 8 | Internal notes - fake credentials, incident reports, compliance findings |
 
 All data is entirely fictional and intentionally insecure (plain-text passwords, unencrypted card numbers, etc.) to serve as realistic targets for SQL injection discovery.

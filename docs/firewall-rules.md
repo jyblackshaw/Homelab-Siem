@@ -139,6 +139,12 @@ Any traffic that does not match a rule on its interface is silently dropped by p
 - CORP_NET cannot reach SOC_NET except the Splunk server on port 9997 for log forwarding
 - No subnet can reach another subnet's hosts unless explicitly permitted
 
+## NAT (Port Forwarding)
+
+> **Documentation In Progress**
+
+NAT port forwarding rules have been configured on pfSense but are not yet documented here. This section will cover inbound NAT rules, their purpose, and how they map external traffic to internal hosts.
+
 ## Planned Changes
 
 - Remove the intentional vulnerability rule (port 4444) on DMZ_NET after attack exercises are complete

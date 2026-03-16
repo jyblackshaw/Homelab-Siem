@@ -21,9 +21,9 @@ Below are the various sections of this project. Each covers a different aspect o
 |---|---|
 | [Network Architecture](docs/network-architecture.md) | Subnet layout, machine inventory, and key security principles |
 | [Firewall Rules](docs/firewall-rules.md) | pfSense rule sets for each subnet with rationale |
-| [Database Setup](docs/database-setup.md) | MariaDB installation, DVWA configuration, and remote database architecture |
-| [Splunk Setup](docs/splunk-setup.md) | SIEM deployment, forwarder configuration, indexes, and dashboards |
 | [Active Directory](docs/active-directory.md) | Domain Controller setup, OUs, GPOs, and domain-joined Linux hosts |
+| [Database & Webserver Setup](docs/database-setup.md) | MariaDB installation, DVWA configuration, and remote database architecture |
+| [Splunk Setup](docs/splunk-setup.md) | SIEM deployment, forwarder configuration, indexes, and dashboards |
 | [SSH Hardening](docs/ssh-hardening.md) | Key-based authentication, bastion host setup, and access controls |
 
 ## Attack Writeups
@@ -48,7 +48,9 @@ Below are the various sections of this project. Each covers a different aspect o
 
 ## Status
 
-This project is actively being built out. Current priorities:
+> **Note:** Much of the environment is built and functional, but documentation for several sections is still in progress.
+
+Current priorities:
 - Port Forwarding Documentation.
 - Completing DVWA attack modules and writeups
 - Active Directory GPO configuration

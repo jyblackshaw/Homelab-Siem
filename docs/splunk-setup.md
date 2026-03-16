@@ -1,5 +1,7 @@
 # Splunk Setup
 
+> **Documentation In Progress**
+
 Documentation of the Splunk SIEM deployment, Universal Forwarder configuration across endpoints, index structure, and dashboards for security monitoring.
 
 ## Sections to Cover

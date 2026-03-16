@@ -96,7 +96,7 @@ The GPO_Local_Admins policy permits only the following groups:
  
 All other users - including HelpDesk - are excluded. This enforces least-privilege by ensuring standard employees and support staff cannot install software, modify system settings, or make administrative changes - even if they have physical access to the workstation.
  
-Restricted Groups can also be used to control membership of other local groups such as Remote Desktop Users (who can RDP in), Backup Operators, and Event Log Readers. It doesn't grant permissions directly - it controls who is in the local groups that already have permissions built into Windo
+Restricted Groups can also be used to control membership of other local groups such as Remote Desktop Users (who can RDP in), Backup Operators, and Event Log Readers.
 
 ![GPO_Local_Admins - Restricted Groups configuration](../links/screenshots/active-directory/group-policy-localadmins.png)
 

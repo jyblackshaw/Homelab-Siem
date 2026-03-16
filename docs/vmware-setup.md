@@ -1,5 +1,7 @@
 # VMware Setup
 
+> **Documentation In Progress**
+
 Documentation of the virtual machine deployment in VMware Workstation, including OS installation and network adapter configuration for Ubuntu, Windows, and Kali machines.
 
 *Brief, not too in depth - just a short summary*

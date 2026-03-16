@@ -1,5 +1,7 @@
 # Network Segmentation
 
+> **Documentation In Progress**
+
 Documentation of how subnet isolation and pfSense firewall rules contain lateral movement, with evidence from attack exercises showing what was blocked and why.
 
 ## Sections to Cover

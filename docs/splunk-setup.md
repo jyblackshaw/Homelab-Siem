@@ -11,3 +11,7 @@ Documentation of the Splunk SIEM deployment, Universal Forwarder configuration a
 - Index structure and data inputs
 - SPL queries for threat detection
 - Correlation searches and alert dashboards
+
+## Future To Do
+- Splunk Deployment Server (maybe)
+- Sysmon

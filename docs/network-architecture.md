@@ -20,9 +20,27 @@ The network is built on VMware Workstation and segmented into four subnets, all 
 | Web-Server (DVWA) | Ubuntu Server | 172.16.0.200 | DMZ_NET | DVWA web application (Apache + PHP) |
 | DB-Server | Ubuntu Server | 192.168.10.50 | LAN_NET | MariaDB backend for DVWA |
 | DC-Server | Windows Server | 192.168.10.10 | LAN_NET | Active Directory Domain Controller |
-| Win10-Client | Windows 10/11 | DHCP | LAN_NET | Corporate workstation |
+| W11-Client | Windows 11 Enterprise | DHCP | LAN_NET | Corporate workstation |
 | Splunk-Server | Ubuntu Server | 192.168.20.100 | SOC_NET | Splunk SIEM - log aggregation and alerting |
-| SOC-Admin | Windows 10/11 | 192.168.20.50 | SOC_NET | SOC analyst workstation and bastion host |
+| SOC-Admin | Windows 11 | 192.168.20.50 | SOC_NET | SOC analyst workstation and bastion host |
+
+### Machine Descriptions
+
+**pfSense** - The central security gateway. All inter-subnet traffic passes through pfSense, where firewall rules enforce access control between zones. Also handles NAT routing for internet access, DNS resolution for all subnets (forwarding queries on behalf of hosts), DHCP for non-corporate subnets, and port forwarding from WAN to DMZ services.
+
+**Kali-Attacker** - Offensive security workstation used for red team exercises against the lab environment. Runs tools including Hydra, Burp Suite, John the Ripper, Nmap, and Netcat. Firewall rules restrict it to only reaching the DVWA webserver in the DMZ, simulating an external attacker with access limited to public-facing services.
+
+**Web-Server (DVWA)** - Hosts the Damn Vulnerable Web Application on Apache with PHP. This is the primary attack target in the lab. It connects to a remote MariaDB database on CORP_NET for its backend and forwards logs to the Splunk server on SOC_NET. Port forwarding on pfSense exposes it through the WAN interface, simulating a public-facing web server.
+
+**DB-Server** - Hosts the MariaDB database used by DVWA, including both DVWA's application tables and custom fake data (customer PII, credit cards, employee records, credentials) used for SQL injection and data exfiltration exercises. Sits on CORP_NET and only accepts database connections from the DVWA webserver on port 3306.
+
+**DC-Server** - Active Directory Domain Controller for `corp.homelab.local`. Provides centralized identity management, DNS, and DHCP for CORP_NET. Manages user accounts, security groups, OUs, and Group Policy Objects that enforce password policies, account lockout, least-privilege access, and audit logging across domain-joined machines.
+
+**W11-Client** - Domain-joined corporate workstation representing a standard employee endpoint. Receives its IP via DHCP from the DC, authenticates users against Active Directory, and has GPOs applied that restrict local admin rights based on security group membership. Used to test and verify access controls for different roles (IT admin vs HelpDesk vs standard user).
+
+**Splunk-Server** - Centralized SIEM responsible for collecting, indexing, and correlating security logs from endpoints across all subnets. Receives logs via Splunk Universal Forwarders on port 9997. Used to build SPL queries, correlation searches, alert rules, and dashboards for detecting attacks performed in the lab.
+
+**SOC-Admin** - The security analyst's primary workstation and the central management point for the lab. Used to access the Splunk web interface for log analysis and alerting, the pfSense web GUI for firewall management, and SSH into Linux servers for administration. Acts as a bastion host - SSH access to servers is scoped to this machine only via firewall rules.
 
 ## Key Security Principles
 

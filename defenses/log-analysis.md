@@ -25,6 +25,10 @@ The following audit categories were enabled (Success and Failure):
 
 ### SPL Query
 
+To test querying, the domain account `m.webb` was intentionally locked out by entering incorrect passwords on the W11-Client workstation.
+
+![Account locked out on DC](../links/screenshots/splunk-queries/acc-lockout.png)
+
 With the audit policies in place, the following SPL query searches Windows Security event logs for account lockout events:
 
 ```spl
@@ -33,15 +37,41 @@ index=main sourcetype="WinEventLog:Security" EventCode=4740
 
 This filters for Event ID 4740 (account lockout). In a production environment this would be paired with a Splunk alert set to trigger on a short interval (e.g. every 5 minutes) to enable near-real-time detection.
 
-To test the query, the domain account `m.webb` was intentionally locked out by entering incorrect passwords on the W11-Client workstation.
-
-![Account locked out on DC](../links/screenshots/splunk-queries/acc-lockout.png)
-
 ### Result
 
 The query returned a lockout event for the user `m.webb`, confirming that the audit policies, log forwarding, and Splunk query are all working end to end.
 
 ![Event 4740 - m.webb locked out](../links/screenshots/splunk-queries/win-event-4740.png)
+
+## 2. DVWA Successful Login Events
+
+### SPL Query
+```spl
+index=main sourcetype=apache_access host="dvwa-server" uri_path="/DVWA/index.php" method="GET"
+```
+
+After a successful login, DVWA redirects the user to `/DVWA/index.php`. Querying for `GET` requests to this endpoint is a reliable indicator of successful authentication, since this page is only reached after valid credentials are submitted. This approach is more precise than filtering on status codes alone, which can vary depending on the client browser or tool used.
+
+### Field Extractions
+
+Fields such as `clientip`, `status`, `method`, and `uri_path` are not automatically extracted from Apache access logs in Splunk. An equivalent query without extracted fields might look like:
+
+```spl
+index=main sourcetype=apache_access host="dvwa-server" "/DVWA/index.php" "GET"
+```
+
+Custom field extractions were created via the Field Extractor wizard (**Settings → Fields → Field Extractions**) by highlighting values in a sample event and naming them according to Splunk CIM conventions.
+
+![Field extraction wizard](../links/screenshots/splunk-queries/field-extraction.png)
+
+### Result
+
+The query returned successful login events to DVWA, showing the source IPs and timestamps of each authenticated session. This is useful for identifying who is accessing the application and from where — in particular, logins from unexpected IPs such as the Kali attacker at `10.10.10.10`.
+
+![DVWA successful login events with extracted fields](../links/screenshots/splunk-queries/dvwa-successful-login-events-with-new-fields.png)
+
+Note: Apache access logs only provide HTTP metadata. In production environments, dedicated auth logging via the application, an identity provider (e.g. Okta, Azure AD), or a WAF would provide more reliable login visibility.
+
 
 ## Sections to Cover
 - SPL queries for detecting brute force, command injection, and lateral movement

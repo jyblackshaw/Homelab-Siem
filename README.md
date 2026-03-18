@@ -20,8 +20,8 @@ Below are the various sections of this project. Each covers a different aspect o
 | Document | Description |
 |---|---|
 | [Network Architecture](docs/network-architecture.md) | Subnet layout, machine inventory, and key security principles |
-| [Firewall Rules](docs/firewall-rules.md) | pfSense rule sets for each subnet with rationale |
-| [Active Directory](docs/active-directory.md) | Domain Controller setup, OUs, GPOs, and domain-joined Linux hosts |
+| [Firewall Rules](docs/firewall-rules.md) | pfSense rule sets for each subnet and port forwarding |
+| [Active Directory](docs/active-directory.md) | Domain Controller setup, OUs, GPOs, and domain-joined hosts |
 | [Database & Webserver Setup](docs/database-setup.md) | MariaDB installation, DVWA configuration, and remote database architecture |
 | [Splunk Setup](docs/splunk-setup.md) | SIEM deployment, forwarder configuration, indexes, and dashboards |
 | [SSH Hardening](docs/ssh-hardening.md) | Key-based authentication, bastion host setup, and access controls |
@@ -31,7 +31,7 @@ Below are the various sections of this project. Each covers a different aspect o
 | Writeup | Description |
 |---|---|
 | [Command Injection → DB Compromise](attacks/command-injection.md) | Full attack chain from DVWA input field to database credential theft and password cracking |
-| [Brute Force](attacks/brute-force.md) | *Planned* |
+| [Brute Force](attacks/brute-force.md) | needs desc |
 | [XSS (Reflected & Stored)](attacks/xss.md) | *Planned* |
 | [Privilege Escalation]() | *Planned* |
 
@@ -39,12 +39,11 @@ Below are the various sections of this project. Each covers a different aspect o
 
 | Document | Description |
 |---|---|
-| [Network Segmentation](defenses/network-segmentation.md) | How subnet isolation and firewall rules contain lateral movement |
 | [Log Analysis & Alerting](defenses/log-analysis.md) | SPL queries, correlation searches, and Splunk alert dashboards |
+| [Attack Detection](defenses/attack-detection.md) | Detection and investigation of attacks performed against the environment |
 | EDR / AV | *Planned* |
 | Vulnerability Scanning | *Planned* |
-| SIEM Queries, Dashboards & Alerts | *Planned* |
-| [IPS / IDS (Proxy Server)](defenses/ids-monitoring.md) | *Planned* |
+| IPS / IDS (Proxy Server) | *Planned* |
 
 ## Status
 

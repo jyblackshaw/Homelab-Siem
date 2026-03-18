@@ -26,21 +26,29 @@ The network is built on VMware Workstation and segmented into four subnets, all 
 
 ### Machine Descriptions
 
-**pfSense** - The central security gateway. All inter-subnet traffic passes through pfSense, where firewall rules enforce access control between zones. Also handles NAT routing for internet access, DNS resolution for all subnets (forwarding queries on behalf of hosts), DHCP for non-corporate subnets, and port forwarding from WAN to DMZ services.
+**pfSense** <br>
+The central security gateway of the network. All inter-subnet traffic passes through pfSense, where firewall rules enforce access control between zones. Also handles NAT routing for internet access, DNS resolution for all subnets (forwarding queries on behalf of hosts), DHCP for non-corporate subnets, and port forwarding from WAN to DMZ services.
 
-**Kali-Attacker** - Offensive security workstation used for red team exercises against the lab environment. Runs tools including Hydra, Burp Suite, John the Ripper, Nmap, and Netcat. Firewall rules restrict it to only reaching the DVWA webserver in the DMZ, simulating an external attacker with access limited to public-facing services.
+**Kali-Attacker** <br>
+Offensive security workstation used for red team exercises against the lab environment. Runs tools including Hydra, Burp Suite, John the Ripper, Nmap, and Netcat. Firewall rules restrict it to only reaching the DVWA webserver in the DMZ, simulating an external attacker with access limited to public-facing services.
 
-**Web-Server (DVWA)** - Hosts the Damn Vulnerable Web Application on Apache with PHP. This is the primary attack target in the lab. It connects to a remote MariaDB database on CORP_NET for its backend and forwards logs to the Splunk server on SOC_NET. Port forwarding on pfSense exposes it through the WAN interface, simulating a public-facing web server.
+**Web-Server (DVWA)** <br>
+ Hosts the Damn Vulnerable Web Application on Apache with PHP. This is the primary attack target in the lab. It connects to a remote MariaDB database on CORP_NET for its backend and forwards logs to the Splunk server on SOC_NET. Port forwarding on pfSense exposes it through the WAN interface, simulating a public-facing web server.
 
-**DB-Server** - Hosts the MariaDB database used by DVWA, including both DVWA's application tables and custom fake data (customer PII, credit cards, employee records, credentials) used for SQL injection and data exfiltration exercises. Sits on CORP_NET and only accepts database connections from the DVWA webserver on port 3306.
+**DB-Server** <br>
+Hosts the MariaDB database used by DVWA, including both DVWA's application tables and custom fake data (customer PII, credit cards, employee records, credentials) used for SQL injection and data exfiltration exercises. Sits on CORP_NET and only accepts database connections from the DVWA webserver on port 3306.
 
-**DC-Server** - Active Directory Domain Controller for `corp.homelab.local`. Provides centralized identity management, DNS, and DHCP for CORP_NET. Manages user accounts, security groups, OUs, and Group Policy Objects that enforce password policies, account lockout, least-privilege access, and audit logging across domain-joined machines.
+**DC-Server** <br>
+Active Directory Domain Controller for `corp.homelab.local`. Provides centralized identity management, DNS, and DHCP for CORP_NET. Manages user accounts, security groups, OUs, and Group Policy Objects that enforce password policies, account lockout, least-privilege access, and audit logging across domain-joined machines.
 
-**W11-Client** - Domain-joined corporate workstation representing a standard employee endpoint. Receives its IP via DHCP from the DC, authenticates users against Active Directory, and has GPOs applied that restrict local admin rights based on security group membership. Used to test and verify access controls for different roles (IT admin vs HelpDesk vs standard user).
+**W11-Client** <br>
+Domain-joined corporate workstation representing a standard employee endpoint. Receives its IP via DHCP from the DC, authenticates users against Active Directory, and has GPOs applied that restrict local admin rights based on security group membership. Used to test and verify access controls for different roles (IT admin vs HelpDesk vs standard user).
 
-**Splunk-Server** - Centralized SIEM responsible for collecting, indexing, and correlating security logs from endpoints across all subnets. Receives logs via Splunk Universal Forwarders on port 9997. Used to build SPL queries, correlation searches, alert rules, and dashboards for detecting attacks performed in the lab.
+**Splunk-Server** <br>
+Centralized SIEM responsible for collecting, indexing, and correlating security logs from endpoints across all subnets. Receives logs via Splunk Universal Forwarders on port 9997. Used to build SPL queries, correlation searches, alert rules, and dashboards for detecting attacks performed in the lab.
 
-**SOC-Admin** - The security analyst's primary workstation and the central management point for the lab. Used to access the Splunk web interface for log analysis and alerting, the pfSense web GUI for firewall management, and SSH into Linux servers for administration. Acts as a bastion host - SSH access to servers is scoped to this machine only via firewall rules.
+**SOC-Admin** <br>
+The security analyst's primary workstation and the central management point for the lab. Used to access the Splunk web interface for log analysis and alerting, the pfSense web GUI for firewall management, and SSH into Linux servers for administration.SSH access to servers is scoped to this machine only via firewall rules.
 
 ## Key Security Principles
 
@@ -49,7 +57,7 @@ The network is built on VMware Workstation and segmented into four subnets, all 
 - **Separated Web and Database Tiers:** DVWA runs on a webserver in the DMZ while its MariaDB database sits on a separate server in the LAN, connected only on port 3306.
 - **Centralized Logging:** Endpoints forward logs to the Splunk SIEM on SOC_NET for monitoring, correlation, and alerting.
 - **SSH Hardening:** Key-based authentication via ed25519, managed from the SOC-Admin bastion host.
-- **Centralized DNS Resolution:** All hosts are manually configured to use the pfSense gateway on their subnet as their DNS server rather than an external resolver. pfSense forwards queries to the internet on behalf of each host. This allows DNS firewall rules to be scoped to the gateway IP only, blocking any direct DNS traffic to external servers. It also gives pfSense full visibility into every DNS query across the network, which can be logged and forwarded to Splunk for monitoring.
+- **Centralized DNS Resolution:** All hosts are manually configured to use the pfSense gateway on their subnet as their DNS server rather than an external resolver. pfSense forwards queries to the internet on behalf of each host. This allows DNS firewall rules to be scoped to the gateway IP only, blocking any direct DNS traffic to external servers. It also gives pfSense full visibility into every DNS query across the network, which can be logged and forwarded to Splunk for monitoring. The exception is CORP_NET - domain-joined machines use the Domain Controller (192.168.10.10) as their DNS server, which resolves internal domain names for CORP_NET hosts. The DB-Server is not domain-joined and uses pfSense directly. The DC itself forwards any external DNS queries it cannot resolve to pfSense.
 
 | Subnet | DNS Server |
 |---|---|

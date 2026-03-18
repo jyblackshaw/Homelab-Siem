@@ -1,8 +1,8 @@
-# Log Analysis & Alerting
+# Log Analysis
 
 > **Documentation In Progress**
 
-Documentation of Splunk SPL queries, correlation searches, and alert dashboards used to detect attacks performed in the lab.
+Documentation of Splunk SPL queries and correlation searches. Note this section is more focused on general query practice and does cover responding to attacks.
 
 ## 1. Account Lockout Detection
 
@@ -74,8 +74,5 @@ Note: Apache access logs only provide HTTP metadata. In production environments,
 
 
 ## Sections to Cover
-- SPL queries for detecting brute force, command injection, and lateral movement
 - Correlation searches linking events across endpoints
-- Alert dashboard configuration and thresholds
-- Example alerts triggered by attack exercises
 - Wireshark Packet Analysis?

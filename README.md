@@ -11,9 +11,9 @@ A segmented virtual enterprise network built from the ground up for practicing o
 
 Below are the various sections of this project. Each covers a different aspect of the environment - from how the network is built, to the attacks performed against it, to the defenses put in place to detect and contain those attacks. Click into each section for a detailed writeup.
 
-- **[Architecture](docs/)** - Network layout, subnet design, machine roles, firewall configuration, and infrastructure setup
-- **[Attacks](attacks/)** - Offensive exercises performed against the environment, with step-by-step writeups showing exploitation techniques and attack chains
-- **[Defenses](defenses/)** - Detection, monitoring, and containment strategies used to identify and respond to the attacks
+**[Architecture](docs/)** - Network layout, subnet design, machine roles, firewall configuration, and infrastructure setup <br>
+**[Attacks](attacks/)** - Offensive exercises performed against the environment, with step-by-step writeups showing exploitation techniques and attack chains <br>
+**[Defenses](defenses/)** - Detection, monitoring, and containment strategies used to identify and respond to the attacks <br>
 
 ## Architecture
 
@@ -31,7 +31,7 @@ Below are the various sections of this project. Each covers a different aspect o
 | Writeup | Description |
 |---|---|
 | [Command Injection → DB Compromise](attacks/command-injection.md) | Full attack chain from DVWA input field to database credential theft and password cracking |
-| [Brute Force](attacks/brute-force.md) | needs desc |
+| [Brute Force](attacks/brute-force.md) | Brute force attack on admin login |
 | [XSS (Reflected & Stored)](attacks/xss.md) | *Planned* |
 | [Privilege Escalation]() | *Planned* |
 
@@ -39,8 +39,9 @@ Below are the various sections of this project. Each covers a different aspect o
 
 | Document | Description |
 |---|---|
-| [Log Analysis & Alerting](defenses/log-analysis.md) | SPL queries, correlation searches, and Splunk alert dashboards |
+| [Log Analysis](defenses/log-analysis.md) | SPL queries, correlation searches, and Splunk alert dashboards |
 | [Attack Detection](defenses/attack-detection.md) | Detection and investigation of attacks performed against the environment |
+| [Alerts & Dashboards](defenses/alerts-dashboards.md) | Splunk alert rules, dashboards, and real-time monitoring |
 | EDR / AV | *Planned* |
 | Vulnerability Scanning | *Planned* |
 | IPS / IDS (Proxy Server) | *Planned* |
@@ -50,7 +51,6 @@ Below are the various sections of this project. Each covers a different aspect o
 > **Note:** Much of the environment is built and functional, but documentation for several sections is still in progress.
 
 Current priorities:
-- Port Forwarding Documentation.
 - Completing DVWA attack modules and writeups
 - Active Directory GPO configuration
 - Splunk dashboards & alerts
@@ -59,7 +59,6 @@ Current priorities:
 - Vulnerability Scanning
 - In depth packet/log analysis.
 - Putting DB & DC on seperate subnets.
-- Windows Event Logs Analysis.
 - Policy Implementations (GRC).
 
 ---

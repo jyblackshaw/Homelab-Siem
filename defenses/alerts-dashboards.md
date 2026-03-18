@@ -11,7 +11,8 @@ index=main host="dvwa-server" sourcetype=apache_access "&password=" | stats coun
 index=main host="dvwa-server" sourcetype=apache_access
 | stats count by clientip
 | sort -count
-![test](..\links\screenshots\alerts+dashboards\top-ips-hitting-dvwa.png)
+
+![top-ips-hitting-dvwa](..\links\screenshots\alerts+dashboards\top-ips-hitting-dvwa.png)
 
 ## Sections to Cover
 - Alert rules and trigger conditions (e.g. account lockout, brute force thresholds, suspicious login times)

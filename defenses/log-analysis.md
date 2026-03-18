@@ -115,11 +115,11 @@ bash: connect: Connection refused
 bash: line 1: /dev/tcp/10.10.10.10/4444: Connection refused
 ```
 
-These errors appeared because bash tried to connect back to the Kali listener (`10.10.10.10:4444`) but the listener wasn't running at that moment. The stderr output from the failed connection was captured by Apache's error log since the command executed in the context of the Apache/PHP process.
+These errors appeared because bash tried to connect back to the Kali listener (`10.10.10.10:4444`) but the listener wasn't running at that moment.
 
 Notably, the **successful** reverse shell left no trace here - a successful connection produces no error output, so nothing gets written to the error log.
 
-![Failed reverse shell traces in Apache error log](../links/screenshots/splunk-queries/Screenshot_2026-03-17_200759.png)
+![Failed reverse shell traces in Apache error log](../links/screenshots/splunk-queries/failed-reverse-shell-logs.png)
 
 **MySQL log - credential tampering:**
 ```spl
@@ -133,7 +133,7 @@ UPDATE dvwa_copy.users SET password='hacked' WHERE user='admin'
 
 This confirms that database query logging is an effective detection layer for post-exploitation activity even when command execution is invisible.
 
-![MySQL credential tampering detected](../links/screenshots/splunk-queries/Screenshot_2026-03-17_201427.png)
+![MySQL credential tampering detected](../links/screenshots/splunk-queries/db-sql-query.png)
 
 ### Why the Reverse Shell Was Not Detected
 

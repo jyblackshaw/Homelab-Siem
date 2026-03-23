@@ -43,7 +43,7 @@ Below are the various sections of this project. Each covers a different aspect o
 | [Attack Detection](defenses/attack-detection.md) | Detection and investigation of attacks performed against the environment |
 | [Alerts & Dashboards](defenses/alerts-dashboards.md) | Splunk alert rules, dashboards, and real-time monitoring |
 | EDR / AV | *Planned* |
-| Vulnerability Scanning | *Planned* |
+| [Vulnerability Scanning](defenses/vulnerability-scanning.md) | OpenVAS scanning, findings, and remediation |
 | IPS / IDS (Proxy Server) | *Planned* |
 
 ## Status

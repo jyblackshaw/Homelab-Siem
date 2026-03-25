@@ -1,4 +1,4 @@
-# Homelab-SIEM
+# Homelab-SOC: Enterprise Network Security Lab
 
 A segmented virtual enterprise network built from the ground up for practicing offensive and defensive cybersecurity. The environment simulates a real corporate network with isolated subnets, a centralized firewall, Active Directory, a vulnerable web application, and a SIEM - designed to demonstrate the full lifecycle of an attack from initial exploitation to detection and response.
 
@@ -44,7 +44,7 @@ Below are the various sections of this project. Each covers a different aspect o
 | [Alerts & Dashboards](defenses/alerts-dashboards.md) | Splunk alert rules, dashboards, and real-time monitoring |
 | EDR / AV | *Planned* |
 | [Vulnerability Scanning](defenses/vulnerability-scanning.md) | OpenVAS scanning, findings, and remediation |
-| IPS / IDS (Proxy Server) | *Planned* |
+| [IPS / IDS](defenses/ips-ids.md) | Suricata on pfSense - intrusion detection and prevention |
 
 ## Status
 
@@ -54,7 +54,7 @@ Current priorities:
 - Completing DVWA attack modules and writeups
 - Active Directory GPO configuration
 - Splunk dashboards & alerts
-- Proxy Server containing IPS/IDS.
+- Suricata IPS/IDS on pfSense
 - EDR / AV
 - Vulnerability Scanning
 - In depth packet/log analysis.
